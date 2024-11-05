@@ -21,6 +21,7 @@ def get_score(player_id):
 def change_score(player_id, score):
     player = Player.objects.get(pk=player_id)
     player.score = score
+    return player
 
 def get_winner(game_id):
     winner = []
@@ -41,3 +42,4 @@ def get_winner(game_id):
                         if player2.score < player.score:
                             winner.remove(player2)
                     winner.append(player)
+    return winner
