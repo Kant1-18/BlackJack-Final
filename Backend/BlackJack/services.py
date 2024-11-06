@@ -26,22 +26,21 @@ def change_score(player_id, score):
     return player
 
 def get_winner(game_id):
-    winner = []
+    winners = []
     players = get_players(game_id)
 
     best_score = 0
+    print(players)
     for player in players:
         if player.score > 21:
             continue
         else:
-            if player.score < best_score:
-                continue
-            else:
-                if len(winner) == 0:
-                    winner.append(player)
-                else:
-                    for player2 in winner:
-                        if player2.score < player.score:
-                            winner.remove(player2)
-                    winner.append(player)
-    return winner
+            if player.score >= best_score:
+                winners.append(player)
+                best_score = player.score
+
+    for player in reversed(winners):
+        if player.score < best_score:
+            winners.remove(player)
+
+    return winners

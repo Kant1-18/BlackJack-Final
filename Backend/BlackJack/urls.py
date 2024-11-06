@@ -53,3 +53,12 @@ def get_player(request, player_id):
 def change_score(request, player_id, newScore):
     player = services.change_score(player_id, newScore)
     return json.dumps(player.score)
+
+@api.get("/get_winner/{game_id}/")
+def get_winner(request, game_id):
+    winner = services.get_winner(game_id)
+    
+    listWinner = []
+    for player in winner:
+        listWinner.append([player.id, player.name, player.score])
+    return json.dumps(listWinner)
