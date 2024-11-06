@@ -9,21 +9,20 @@ def create_game(name: str, players: list[str]):
 
     return game
 
+def get_game(game_id):
+    game = Game.objects.get(pk=game_id)
+    return game
+
 def get_players(game_id):
     returnList = []
     game = Game.objects.get(pk=game_id)
     players = game.players.all()
-    for player in players:
-        returnList.append(player.name)
-    return returnList
-
-def get_score(player_id):
-    player = Player.objects.get(pk=player_id)
-    return player.score
+    return players
 
 def change_score(player_id, score):
     player = Player.objects.get(pk=player_id)
     player.score = score
+    player.save()
     return player
 
 def get_winner(game_id):
