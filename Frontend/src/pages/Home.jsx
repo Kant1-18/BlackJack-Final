@@ -2,6 +2,12 @@ import { useState } from 'react'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [inputValue, setInputValue] = useState('');
+  
+    const toto = (vqlue) => {
+        console.log(vqlue)
+        setInputValue(vqlue)
+    }
 
   return (
     <>
@@ -10,7 +16,14 @@ function App() {
       </div>
       <div class="home-main-container">
         <label htmlFor="">Nom de la partie :</label>
-        <input type="text" />
+        <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => {
+                console.log
+                setInputValue(e.target.value)
+            }}
+        />
 
         <label htmlFor="">Joueur 1 :</label>
         <input type="text" />
