@@ -19,6 +19,7 @@ export default function useCreateGame() {
       .then((response) => {
         console.log(response);
         const parsedResponse = JSON.parse(response); // Convertir la chaîne en tableau
+        const gameName = parsedResponse[0][1];
         const gameId = parsedResponse[0][0];
         navigate(`/GamePage/${gameId}`)
       })
