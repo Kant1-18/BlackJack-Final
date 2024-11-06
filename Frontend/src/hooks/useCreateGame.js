@@ -1,6 +1,6 @@
 export default function useCreateGame() {
 
-    const createGame = (name, players) => {
+    const createGame = (name, filteredPlayers) => {
         fetch("http://localhost:8000/api/start_game/", {
             method: "POST",
             headers: {
