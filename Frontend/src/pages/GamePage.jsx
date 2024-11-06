@@ -4,12 +4,9 @@ import "./GamePage.css";
 import launchDice from "../hooks/useLaunchDice";
 import endTurn from "../hooks/useEndTurn";
 import filteredPlayers from "./Home";
-import parsedResponse from "../hooks/useCreateGame";
+import {parsedResponse,gameId, gameName} from "../hooks/useCreateGame";
 
-export default function GamePage() {
-  const gameName = parsedResponse[0][1];
-  const gameId = parsedResponse[0][0];
-
+export default function GamePage() {  
   const [numDice, setNumDice] = useState(1);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0); // Index du joueur actuel
 
