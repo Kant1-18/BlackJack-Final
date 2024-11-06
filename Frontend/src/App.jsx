@@ -10,12 +10,8 @@ function App() {
 
   return (
     <>
-      <li>
-          <button onClick={() => navigate("/")}>Home</button>
-        </li>
-        <li>
-          <button onClick={() => navigate("/GamePage")}>GamePage</button> 
-      </li>
+      <button className='home-button' onClick={() => navigate("/")}>Home</button>
+      <button className='home-button' onClick={() => navigate("/GamePage")}>Game</button> 
 
       <Routes>
         <Route path="/" element={<Home />} />
