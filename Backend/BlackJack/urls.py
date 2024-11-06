@@ -46,7 +46,7 @@ def launch_dice(request, launch_dice_schema: LaunchDiceSchema):
     player = services.launchDice(launch_dice_schema.player_id, launch_dice_schema.number_of_dice)
     return json.dumps((player.id, player.name, player.score))
 
-@api.port("/end_turn/")
+@api.post("/end_turn/")
 def end_turn(request, end_turn_schema: EndTurnSchema):
     game = services.get_game(end_turn_schema.game_id)
     players = services.get_players(end_turn_schema.game_id)
