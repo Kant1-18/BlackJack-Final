@@ -1,12 +1,16 @@
 import { useState } from 'react'
+import useCreateGame from "../hooks/useCreateGame";
+
 
 function App() {
   const [count, setCount] = useState(0)
   const [inputValue, setInputValue] = useState('');
+  const { createGame } = useCreateGame();
+
   
-    const toto = (vqlue) => {
-        console.log(vqlue)
-        setInputValue(vqlue)
+    const toto = (value) => {
+        console.log(value)
+        setInputValue(value)
     }
 
   return (
@@ -34,7 +38,7 @@ function App() {
         <label htmlFor="">Joueur 4 :</label>
         <input type="text" />
 
-        <button>Lancer la partie</button>
+        <button onClick={() => createGame()}>Lancer la partie</button>
 
         
       </div>
