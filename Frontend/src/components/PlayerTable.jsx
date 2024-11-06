@@ -7,7 +7,6 @@ export default function PlayerTable({ players }) {
 
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Name</th>
                     <th>Score</th>
                 </tr>
