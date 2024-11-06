@@ -27,8 +27,6 @@ class LaunchDiceSchema(Schema):
 class EndTurnSchema(Schema):
     game_id: int
 
-class GameIdSchema(Schema):
-    game_id: int
 
 @api.post("/start_game/")
 def add(request, add_game_schema: AddGameSchema):
