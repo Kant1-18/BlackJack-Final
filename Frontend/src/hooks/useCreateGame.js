@@ -9,7 +9,7 @@ export default function useCreateGame() {
             },
             body: JSON.stringify({
                 name: name,
-                players: players,
+                players: filteredPlayers,
             }),
         })
             .then((response) => {
