@@ -13,6 +13,7 @@ function App() {
   const handleCreateGame = () => {
     createGame(inputValue, [player1, player2, player3, player4]);
     console.log(createGame)
+
   };
 
   return (
