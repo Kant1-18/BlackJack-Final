@@ -20,6 +20,17 @@ class AddGameSchema(Schema):
     name: str
     players: list[str]
 
+class LaunchDiceSchema(Schema):
+    player_id: int
+    number_of_dice: int
+
+class EndTurnSchema(Schema):
+    game_id: int
+    player_id: int
+
+class GameIdSchema(Schema):
+    game_id: int
+
 @api.post("/start_game/")
 def add(request, add_game_schema: AddGameSchema):
     game = services.create_game(add_game_schema.name, add_game_schema.players)
@@ -30,35 +41,26 @@ def add(request, add_game_schema: AddGameSchema):
         listPlayers.append([player.id, player.name, player.score])
     return json.dumps(((game.id, game.name, game.turn, game.ended), listPlayers))
 
-@api.get("/get_game/{game_id}/")
-def get_game(request, game_id):
-    game = services.get_game(game_id)
-    return json.dumps((game.id, game.name, game.turn, game.ended))
-
-@api.get("/get_players/{game_id}/")
-def get_players(request, game_id):
-    players = services.get_players(game_id)
-    
-    listPlayers = []
-    for player in players:
-        listPlayers.append([player.id, player.name, player.score])
-    return json.dumps(listPlayers)
-
-@api.get("/get_player/{player_id}/")
-def get_player(request, player_id):
-    player = services.get_players(player_id)
+@api.post("/launch_dice/")
+def launch_dice(request, launch_dice_schema: LaunchDiceSchema):
+    player = services.launchDice(launch_dice_schema.player_id, launch_dice_schema.number_of_dice)
     return json.dumps((player.id, player.name, player.score))
 
-@api.post("/change_score/{player_id}/{newScore}/")
-def change_score(request, player_id, newScore):
-    player = services.change_score(player_id, newScore)
-    return json.dumps(player.score)
+@api.post("/end_turn/")
+def end_turn(request, end_turn_schema: EndTurnSchema):
+    game = services.get_game(end_turn_schema.game_id)
+    players = services.get_players(end_turn_schema.game_id)
 
-@api.get("/get_winner/{game_id}/")
-def get_winner(request, game_id):
-    winner = services.get_winner(game_id)
-    
-    listWinner = []
-    for player in winner:
-        listWinner.append([player.id, player.name, player.score])
-    return json.dumps(listWinner)
+    gameTurn = services.addTurn(end_turn_schema.game_id)
+
+    if gameTurn == len(players):
+        gameEnded = services.endGame(end_turn_schema.game_id)
+        winners = services.get_winner(end_turn_schema.game_id)        
+
+        for player in winners:
+            listWinner = []
+            listWinner.append([player.id, player.name, player.score])
+        return json.dumps(listWinner)
+    else:
+        gameEnded = game.ended
+        return json.dumps(gameEnded)

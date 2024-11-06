@@ -1,6 +1,7 @@
 from django.db import models
 from .models import Game
 from .models import Player
+import random
 
 def create_game(name: str, players: list[str]):
     game = Game.objects.create(name=name)
@@ -19,10 +20,8 @@ def get_players(game_id):
     players = game.players.all()
     return players
 
-def change_score(player_id, score):
+def get_player(player_id):
     player = Player.objects.get(pk=player_id)
-    player.score = score
-    player.save()
     return player
 
 def get_winner(game_id):
@@ -44,3 +43,27 @@ def get_winner(game_id):
             winners.remove(player)
 
     return winners
+
+def addTurn(game_id):
+    game = Game.objects.get(pk=game_id)
+    game.turn += 1
+    game.save()
+    return game.turn
+
+def endGame(game_id):
+    game = Game.objects.get(pk=game_id)
+    game.ended = True
+    game.save()
+    return game.ended
+
+def launchDice(player_id, numberOfDice):
+    player = get_player(player_id)
+    result = player.score
+
+    for i in range(numberOfDice):
+        result += random.randint(1, 6)
+
+    player.score = result
+    player.save()
+
+    return player
