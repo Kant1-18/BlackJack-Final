@@ -3,7 +3,8 @@ import { useState } from "react";
 import "./GamePage.css";
 import launchDice from "../hooks/useLaunchDice";
 import endTurn from "../hooks/useEndTurn";
-import filteredPlayers from "./Home"
+import filteredPlayers from "./Home";
+import parsedResponse from "../hooks/useCreateGame";
 
 export default function GamePage() {
   const gameName = parsedResponse[0][1];
