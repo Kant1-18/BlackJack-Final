@@ -31,15 +31,17 @@ function App() {
         <h1>Black Jack</h1>
       </div>
       <div className="home-main-container">
+        <div className="home-players-container">
         <label>Nom de la partie :</label>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+        </div>
 
         {players.map((player, index) => (
-          <div className="home-main-container" key={index}>
+          <div className="home-players-container" key={index}>
             <label>Joueur {index + 1} :</label>
             <input
               type="text"

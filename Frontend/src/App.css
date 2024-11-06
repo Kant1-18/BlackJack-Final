@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  color: white;
 }
 
 .logo {
@@ -44,7 +45,16 @@
 .home-main-container{
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
+
+.home-players-container{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+
 
 .home-button{
   background-color: blue;
