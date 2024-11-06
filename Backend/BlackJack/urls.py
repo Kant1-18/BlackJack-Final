@@ -26,7 +26,6 @@ class LaunchDiceSchema(Schema):
 
 class EndTurnSchema(Schema):
     game_id: int
-    player_id: int
 
 class GameIdSchema(Schema):
     game_id: int
