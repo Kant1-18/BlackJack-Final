@@ -5,14 +5,17 @@ from .models import Player
 def create_game(name: str, players: list[str]):
     game = Game.objects.create(name=name)
     for player in players:
-        Player.objects.create(name=player, game=game.id)
+        Player.objects.create(name=player, game=game)
 
     return game
 
 def get_players(game_id):
+    returnList = []
     game = Game.objects.get(pk=game_id)
     players = game.players.all()
-    return players
+    for player in players:
+        returnList.append(player.name)
+    return returnList
 
 def get_score(player_id):
     player = Player.objects.get(pk=player_id)
