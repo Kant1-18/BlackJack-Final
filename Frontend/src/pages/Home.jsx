@@ -51,7 +51,7 @@ function App() {
           </div>
         ))}
 
-        <button onClick={handleCreateGame}>Lancer la partie</button>
+        <button className='home-creategame-btn' onClick={handleCreateGame}>Lancer la partie</button>
       </div>
     </>
   );
