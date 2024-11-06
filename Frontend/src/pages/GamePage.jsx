@@ -13,4 +13,4 @@ export default function GamePage() {
       <PlayerTable players={players} />
     </div>
   );
-}   
+}
