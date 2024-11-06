@@ -1,12 +1,24 @@
 import PlayerTable from "../components/PlayerTable";
 import { useState } from "react";
 import "./GamePage.css";
+import launchDice from "../hooks/launchDice";
 
 export default function GamePage() {
   const [players, setPlayers] = useState([
     { name: "Player 1", score: 0 },
     { name: "Player 2", score: 0 },
   ]);
+
+  const [numDice, setNumDice] = useState(1);
+
+  const handleDiceChange = (event) => {
+    setNumDice(parseInt(event.target.value));
+  };
+
+  const handleLaunchDice = () => {
+    launchDice(numDice);
+  };
+
 
   return (
     <div>
@@ -17,21 +29,15 @@ export default function GamePage() {
         <legend>Choisir le nombre de dés à lancer</legend>
 
         <div>
-          <input type="radio" id="de1" name="choix_de" value="1" />
-          <label for="de1">1</label>
+          <select name="des_selector" id="des-select" onChange={handleDiceChange}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
         </div>
-        <div>
-          <input type="radio" id="de2" name="choix_de" value="2" />
-          <label for="de2">2</label>
-        </div>
-        <div>
-          <input type="radio" id="de3" name="choix_de" value="3" />
-          <label for="de3">3</label>
-        </div>
-
       </fieldset>
 
-      <button>Lancer les dés</button>
+      <button onClick={handleLaunchDice}>Lancer les dés</button>
       <button>Finir le tour</button>
 
       <PlayerTable players={players} />

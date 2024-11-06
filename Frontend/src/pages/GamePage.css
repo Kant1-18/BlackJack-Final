@@ -33,3 +33,7 @@ th {
     padding: 10px;
     color: black;
 }
+
+#des-select {
+    width: 100%;
+}
