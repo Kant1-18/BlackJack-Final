@@ -23,6 +23,7 @@ function App() {
     // Filtrer les joueurs vides et envoyer la liste au backend
     const filteredPlayers = players.filter((player) => player !== '');
     createGame(inputValue, filteredPlayers);
+    navigate("/GamePage");
   };
 
   return (
@@ -31,25 +32,29 @@ function App() {
         <h1>Black Jack</h1>
       </div>
       <div className="home-main-container">
+        <div className="home-players-container">
         <label>Nom de la partie :</label>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+        </div>
 
-        {players.map((player, index) => (
-          <div className="home-main-container" key={index}>
-            <label>Joueur {index + 1} :</label>
-            <input
-              type="text"
-              value={player}
-              onChange={(e) => handlePlayerChange(index, e.target.value)}
-            />
-          </div>
-        ))}
+        <div>
+          {players.map((player, index) => (
+            <div className="home-players-container" key={index}>
+              <label>Joueur {index + 1} :</label>
+              <input
+                type="text"
+                value={player}
+                onChange={(e) => handlePlayerChange(index, e.target.value)}
+              />
+            </div>
+          ))}
+        </div>
 
-        <button onClick={handleCreateGame}>Lancer la partie</button>
+        <button className='home-creategame-btn' onClick={handleCreateGame}>Lancer la partie</button>
       </div>
     </>
   );
