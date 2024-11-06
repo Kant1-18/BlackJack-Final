@@ -17,15 +17,15 @@ export default function GamePage() {
         <legend>Choisir le nombre de dés à lancer</legend>
 
         <div>
-          <input type="radio" id="de1" name="choix_dé" value="1" />
+          <input type="radio" id="de1" name="choix_de" value="1" />
           <label for="de1">1</label>
         </div>
         <div>
-          <input type="radio" id="de2" name="choix_dé" value="2" />
+          <input type="radio" id="de2" name="choix_de" value="2" />
           <label for="de2">2</label>
         </div>
         <div>
-          <input type="radio" id="de3" name="choix_dé" value="3" />
+          <input type="radio" id="de3" name="choix_de" value="3" />
           <label for="de3">3</label>
         </div>
 
