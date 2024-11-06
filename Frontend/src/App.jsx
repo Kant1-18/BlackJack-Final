@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import './App.css'
-import {Routes, Route, useNavigate} from "react-router-dom";
+import {Routes, Route, useNavigate, useParams} from "react-router-dom";
 import Home from './pages/Home'
 import GamePage from './pages/GamePage'
 
 function App() {
   const [count, setCount] = useState(0)
   const navigate = useNavigate();
+  const { gameId } = useParams();
 
   return (
     <>
@@ -15,7 +16,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/GamePage" element={<GamePage />} />
+        <Route path="/GamePage/:gameId" element={<GamePage />} />
       </Routes>
     </>
   )

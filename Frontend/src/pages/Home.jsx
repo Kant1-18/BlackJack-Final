@@ -23,7 +23,6 @@ function App() {
     // Filtrer les joueurs vides et envoyer la liste au backend
     const filteredPlayers = players.filter((player) => player !== '');
     createGame(inputValue, filteredPlayers);
-    navigate("/GamePage");
   };
 
   return (
