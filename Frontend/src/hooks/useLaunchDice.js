@@ -1,16 +1,17 @@
-export default function useEndTurn() {
+export default function useLaunchDice() {
 
-    const endTurn = (gameId) => {
-        fetch("http://localhost:8000/api/end_turn/", {
+    const launchDice = (currentPlayerID,diceNumber) => {
+        fetch("http://localhost:8000/api/launch_dice/", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                game_id: gameId,
+                player_id: currentPlayerID,
+                game_id: diceNumber,
               }),
-            })
+        })
             .then((response) => {
                 return response.json();
             }) 
