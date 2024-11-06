@@ -3,17 +3,25 @@ import useCreateGame from "../hooks/useCreateGame";
 
 function App() {
   const [inputValue, setInputValue] = useState('');
-  const [player1, setPlayer1] = useState('');
-  const [player2, setPlayer2] = useState('');
-  const [player3, setPlayer3] = useState('');
-  const [player4, setPlayer4] = useState('');
+  const [players, setPlayers] = useState(['']); // Initialiser avec un champ vide pour le premier joueur
 
   const { createGame } = useCreateGame();
 
-  const handleCreateGame = () => {
-    createGame(inputValue, [player1, player2, player3, player4]);
-    console.log(createGame)
+  const handlePlayerChange = (index, value) => {
+    const newPlayers = [...players];
+    newPlayers[index] = value;
+    setPlayers(newPlayers);
 
+    // Ajouter un nouveau champ d'entrée si le dernier champ est rempli
+    if (index === players.length - 1 && value !== '') {
+      setPlayers([...newPlayers, '']);
+    }
+  };
+
+  const handleCreateGame = () => {
+    // Filtrer les joueurs vides et envoyer la liste au backend
+    const filteredPlayers = players.filter((player) => player !== '');
+    createGame(inputValue, filteredPlayers);
   };
 
   return (
@@ -29,33 +37,16 @@ function App() {
           onChange={(e) => setInputValue(e.target.value)}
         />
 
-        <label>Joueur 1 :</label>
-        <input
-          type="text"
-          value={player1}
-          onChange={(e) => setPlayer1(e.target.value)}
-        />
-
-        <label>Joueur 2 :</label>
-        <input
-          type="text"
-          value={player2}
-          onChange={(e) => setPlayer2(e.target.value)}
-        />
-
-        <label>Joueur 3 :</label>
-        <input
-          type="text"
-          value={player3}
-          onChange={(e) => setPlayer3(e.target.value)}
-        />
-
-        <label>Joueur 4 :</label>
-        <input
-          type="text"
-          value={player4}
-          onChange={(e) => setPlayer4(e.target.value)}
-        />
+        {players.map((player, index) => (
+          <div className="home-main-container" key={index}>
+            <label>Joueur {index + 1} :</label>
+            <input
+              type="text"
+              value={player}
+              onChange={(e) => handlePlayerChange(index, e.target.value)}
+            />
+          </div>
+        ))}
 
         <button onClick={handleCreateGame}>Lancer la partie</button>
       </div>
