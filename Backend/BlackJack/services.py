@@ -44,3 +44,19 @@ def get_winner(game_id):
             winners.remove(player)
 
     return winners
+
+def endTurn(game_id):
+    game = Game.objects.get(pk=game_id)
+    game.turn += 1
+    game.save()
+    return game.turn
+
+def getTurn(game_id):
+    game = Game.objects.get(pk=game_id)
+    return game.turn
+
+def endGame(game_id):
+    game = Game.objects.get(pk=game_id)
+    game.ended = True
+    game.save()
+    return game.ended

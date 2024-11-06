@@ -62,3 +62,18 @@ def get_winner(request, game_id):
     for player in winner:
         listWinner.append([player.id, player.name, player.score])
     return json.dumps(listWinner)
+
+@api.post("/end_turn/{game_id}/")
+def end_turn(request, game_id):
+    turn = services.endTurn(game_id)
+    return json.dumps(turn)
+
+@api.get("/get_turn/{game_id}/")
+def get_turn(request, game_id):
+    turn = services.getTurn(game_id)
+    return json.dumps(turn)
+
+@api.post("/end_game/{game_id}/")
+def end_game(request, game_id):
+    ended = services.endGame(game_id)
+    return json.dumps(ended)
