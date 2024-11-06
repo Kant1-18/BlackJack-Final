@@ -1,4 +1,5 @@
 import PlayerRow from "./PlayerRow";
+import "../pages/GamePage.css";
 
 export default function PlayerTable({ players }) {
 
