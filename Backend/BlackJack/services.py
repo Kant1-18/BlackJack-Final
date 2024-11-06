@@ -50,10 +50,6 @@ def addTurn(game_id):
     game.save()
     return game.turn
 
-def getTurn(game_id):
-    game = Game.objects.get(pk=game_id)
-    return game.turn
-
 def endGame(game_id):
     game = Game.objects.get(pk=game_id)
     game.ended = True

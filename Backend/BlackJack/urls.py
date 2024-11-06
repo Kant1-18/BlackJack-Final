@@ -55,11 +55,12 @@ def end_turn(request, end_turn_schema: EndTurnSchema):
 
     if gameTurn == len(players):
         gameEnded = services.endGame(end_turn_schema.game_id)
-        winners = services.get_winner(end_turn_schema.game_id)
+        winners = services.get_winner(end_turn_schema.game_id)        
 
         for player in winners:
             listWinner = []
             listWinner.append([player.id, player.name, player.score])
         return json.dumps(listWinner)
     else:
+        gameEnded = game.ended
         return json.dumps(gameEnded)
