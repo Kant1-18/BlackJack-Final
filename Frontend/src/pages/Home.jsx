@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useCreateGame from "../hooks/useCreateGame";
+import "./GamePage.css";
 
 function App() {
   const [inputValue, setInputValue] = useState('');

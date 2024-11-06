@@ -8,8 +8,8 @@ export default function useCreateGame() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                name: name,
-                players: players,
+                name: "coucou",
+                players: ["titi", "tata", "toto"],
             }),
         })
             .then((response) => {
