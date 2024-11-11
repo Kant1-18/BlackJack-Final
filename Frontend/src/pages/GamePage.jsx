@@ -1,9 +1,10 @@
-// import PlayerTable from "../components/PlayerTable";
+import PlayerTable from "../components/PlayerTable";
 import { useState } from "react";
 import "./GamePage.css";
 import useLaunchDice from "../hooks/useLaunchDice";
 // import endTurn from "../hooks/useEndTurn";
 // import {gameName,gameId} from "../hooks/useCreateGame";
+//import { playersList } from "../hooks/useCreateGame";
 
 export default function GamePage() {
   // const gameName = parsedResponse[0][1];
@@ -17,18 +18,16 @@ export default function GamePage() {
     setNumDice(parseInt(event.target.value));
   };
 
-  const { handleLaunchDice } = useLaunchDice(currentPlayerIndex, numDice); 
+  const { handleLaunchDice } = useLaunchDice(currentPlayerIndex, numDice);
 
-  // Logique d'appel de la fonction endTurn() si (endTurn === true)
-  // if (endTurn) {
-  //   endTurn(gameId);
-  // }
+  //  if (endTurn) {
+  //    endTurn(gameId);
+  //  }
 
-  // const handleEndTurn = () => {
-  //   endTurn(gameId);
-  //   // Passer au joueur suivant
-  //   setCurrentPlayerIndex((prevIndex) => (prevIndex + 1) % filteredPlayers.length);
-  // }
+  //  const handleEndTurn = () => {
+  //    endTurn(gameId);
+  //    setCurrentPlayerIndex((prevIndex) => (prevIndex + 1) % filteredPlayers.length);
+  //}
 
 
   return (
@@ -50,9 +49,8 @@ export default function GamePage() {
       </fieldset>
 
       <button onClick={handleLaunchDice}>Lancer les dés</button>
-      {/* <button onClick={handleEndTurn}>Finir le tour</button> */}
-
-      {/* <PlayerTable players={filteredPlayers} /> */}
+      {/* <button onClick={handleEndTurn}>Finir le tour</button> */ }
+      <PlayerTable listplayers={playersList} />
     </div>
   );
 }
