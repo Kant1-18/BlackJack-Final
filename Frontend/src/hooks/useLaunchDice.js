@@ -9,11 +9,13 @@ export default function useLaunchDice() {
             },
             body: JSON.stringify({
                 player_id: currentPlayerID,
-                game_id: diceNumber,
+                number_of_dice: diceNumber,
               }),
         })
             .then((response) => {
                 return response.json();
+                //const playerScore = parsedResponse[0];
+                // logique de verification du scrore : si > a 21 --> endTurn = true
             }) 
             .then((response) => {
                 console.log(response);
@@ -23,5 +25,5 @@ export default function useLaunchDice() {
             });
     };
 
-    return { endTurn };
+    return { launchDice };
 }
