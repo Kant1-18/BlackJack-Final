@@ -27,6 +27,8 @@ class LaunchDiceSchema(Schema):
 class EndTurnSchema(Schema):
     game_id: int
 
+class getPlayersSchema(Schema):
+    game_id: int
 
 @api.post("/start_game/")
 def add(request, add_game_schema: AddGameSchema):
@@ -41,7 +43,7 @@ def add(request, add_game_schema: AddGameSchema):
 @api.post("/launch_dice/")
 def launch_dice(request, launch_dice_schema: LaunchDiceSchema):
     player = services.launchDice(launch_dice_schema.player_id, launch_dice_schema.number_of_dice)
-    return json.dumps((player.id, player.name, player.score))
+    return json.dumps((player.score))
 
 @api.post("/end_turn/")
 def end_turn(request, end_turn_schema: EndTurnSchema):
@@ -61,3 +63,12 @@ def end_turn(request, end_turn_schema: EndTurnSchema):
     else:
         gameEnded = game.ended
         return json.dumps(gameEnded)
+    
+@api.post("/api/get_players/")
+def get_players(request, get_players_schema: getPlayersSchema):
+    players = services.get_players(get_players_schema.game_id)
+
+    listPlayers = []
+    for player in players:
+        listPlayers.append([player.id, player.name, player.score])
+    return json.dumps(listPlayers)
