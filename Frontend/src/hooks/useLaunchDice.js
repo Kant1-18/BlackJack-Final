@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 export default function useLaunchDice() {
+    const [playersList, setPlayersList] = useState([]);
 
     const launchDice = (currentPlayerID,diceNumber) => {
         fetch("http://localhost:8000/api/launch_dice/", {
@@ -12,18 +15,17 @@ export default function useLaunchDice() {
                 number_of_dice: diceNumber,
               }),
         })
-            .then((response) => {
-                return response.json();
+            .then((response) => response.json())
                 //const playerScore = parsedResponse[0];
                 // logique de verification du scrore : si > a 21 --> endTurn = true
-            }) 
-            .then((response) => {
-                console.log(response);
+            .then((data) => {
+                console.log(data);
+                setPlayersList(data.players);
             })
             .catch((reason) => {
                 console.error(reason);
             });
     };
 
-    return { launchDice };
+    return { launchDice, playersList  };
 }

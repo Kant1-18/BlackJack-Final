@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { playersList } from './globals';
 
 export default function useCreateGame() {
   const navigate = useNavigate(); // Initialiser navigate dans le hook
@@ -18,10 +17,8 @@ export default function useCreateGame() {
     })
       .then((response) => response.json())
       .then((response) => {
-        const parsedResponse = JSON.parse(response); // Convertir la chaîne en tableau
+        const parsedResponse = JSON.parse(response);
         const gameId = parsedResponse[0][0];
-        const playersList = parsedResponse[1];
-        console.log(playersList);
         navigate(`/GamePage/${gameId}`)
       })
       .catch((reason) => {
