@@ -18,9 +18,11 @@ Une fois que tout le monde a joué, le joueur le plus proche de 21 remporte la p
 - **Création d'une nouvelle partie** : l'utilisateur a la possibilité de créer une partie avec un nombre de joueur indéfini (les données sont bien envoyées à la base de données).
 
 ### En cours
-- **Lancer les dés** : la fonctionnalité est proche d'être correcte mais nous ne pouvons pas encore essayer car la liste de joueurs que l'on récupère en front est vide (pourtant remplie dans le back).
+- **Lancer les dés** : la fonctionnalité est proche d'être correcte mais nous ne pouvons pas encore essayer car nous n'arrivons pas à traiter la liste de joueurs que l'on récupère dans la variable gameInfo dans GamePage.jsx. Quand nous faisons un .map ou que nous définissons une autre variable pour ne contenir que gameInfo.players (par exemple), la liste est dite "undefined" dans la console. D'après nous, cela est dû au fait que la réponse donnée par l'API arrive après que nous fassions nos différentes opérations. Nous avons essayé tant bien que mal à résoudre ce problème en utilisant des useEffect pour vérifier les modifications de la valeur, faire patienter jusqu'à ce que les données soient chargées et autres... mais rien n'y fait.
 - **Mettre fin à son tour** : pour la même raison, cette fonctionnalité est en partie développée mais ne peut pas être testée.
 - **Annoncer le vainqueur** : la fonctionnalité n'est développée qu'en back pour l'instant.
+
+Toutes les fonctionnalités que nous n'avons pas réussi à "rendre visible" sont à peu près développées dans le back, mais avec ce soucis de récupération de la liste des joueurs que nous n'avons pas réussi à corriger, il nous est impossible de l'afficher sur la page GamePage.
 
 
 ## Installation
@@ -32,6 +34,10 @@ Une fois que tout le monde a joué, le joueur le plus proche de 21 remporte la p
 2. Lancer le serveur back :
    ```bash
    cd Backend
+   python.exe -m pip install --upgrade pip
+   pip install Django
+   pip install Django-ninja
+   pip install django-cors-headers
    python manage.py migrate
    python manage.py makemigrations
    python manage.py runserver
@@ -39,6 +45,7 @@ Une fois que tout le monde a joué, le joueur le plus proche de 21 remporte la p
 3. Lancer le front :
    ```bash
    cd Frontend
+   npm install
    npm run dev
    ```
 
