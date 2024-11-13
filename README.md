@@ -34,6 +34,10 @@ Toutes les fonctionnalités que nous n'avons pas réussi à "rendre visible" son
 2. Lancer le serveur back :
    ```bash
    cd Backend
+   python.exe -m pip install --upgrade pip
+   pip install Django
+   pip install Django-ninja
+   pip install django-cors-headers
    python manage.py migrate
    python manage.py makemigrations
    python manage.py runserver
@@ -41,6 +45,7 @@ Toutes les fonctionnalités que nous n'avons pas réussi à "rendre visible" son
 3. Lancer le front :
    ```bash
    cd Frontend
+   npm install
    npm run dev
    ```
 
