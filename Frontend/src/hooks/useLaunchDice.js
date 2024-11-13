@@ -14,7 +14,7 @@ export default function useLaunchDice() {
         })
             .then((response) => response.json())
                 //const playerScore = parsedResponse[0];
-                // logique de verification du scrore : si > a 21 --> endTurn = true
+                // logique de verification du scrore : si > a 21 --> endTurn = true (géré dans le back)
             .then((data) => {
                 console.log(data);
             })

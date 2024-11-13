@@ -1,4 +1,6 @@
-// PlayerRow.jsx
+// Les composants ne sont pas directement fonctionnels puisque nous avons gérés les lignes autrement
+// Même si nous étions passé par les composants, notre problème aurait été le même.
+
 import PropTypes from 'prop-types';
 
 function PlayerRow({ playerID, playerName, playerScore }) {
@@ -11,7 +13,6 @@ function PlayerRow({ playerID, playerName, playerScore }) {
     );
 }
 
-// Validation des props
 PlayerRow.propTypes = {
     playerID: PropTypes.number.isRequired,
     playerName: PropTypes.string.isRequired,

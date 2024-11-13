@@ -1,3 +1,5 @@
+// Ce hook pourrait être supprimé puisque nous avons tenté de récupérer les informations dans useGetGame
+
 import { useState } from 'react';
 
 export default function useGetPlayers(game_id) {

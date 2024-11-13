@@ -4,7 +4,7 @@ import "./GamePage.css";
 
 function App() {
   const [inputValue, setInputValue] = useState('');
-  const [players, setPlayers] = useState(['']); // Initialiser avec un champ vide pour le premier joueur
+  const [players, setPlayers] = useState(['']);
 
   const { createGame } = useCreateGame();
 
@@ -13,14 +13,14 @@ function App() {
     newPlayers[index] = value;
     setPlayers(newPlayers);
 
-    // Ajouter un nouveau champ d'entrée si le dernier champ est rempli
+    // Ajoute un nouveau champ si le dernier champ est rempli
     if (index === players.length - 1 && value !== '') {
       setPlayers([...newPlayers, '']);
     }
   };
 
   const handleCreateGame = () => {
-    // Filtrer les joueurs vides et envoyer la liste au backend
+    // Filtre les joueurs vides et envoyer la liste au backend (la liste ne contiendra pas de joueurs vides)
     const filteredPlayers = players.filter((player) => player !== '');
     createGame(inputValue, filteredPlayers);
   };

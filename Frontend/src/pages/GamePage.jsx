@@ -5,18 +5,24 @@ import useLaunchDice from "../hooks/useLaunchDice";
 import useGetGame from "../hooks/useGetGame";
 
 export default function GamePage() {
+
+  // Récupère l'identifiant de la game depuis l'URL
   let { gameId } = useParams();
 
+  // Récupère les informations de la partie depuis le backend
+  // Note : Nous avons essayé d'utiliser useEffect pour les raisons citées dans le README mais cela n'a pas fonctionné.
+  //        Nous arrivons bien à avoir les informations de la partie mais nous ne pouvons pas les utiliser.
   const { getGame, gameInfo } = useGetGame();
   getGame(gameId);
   console.log(gameInfo);
 
   const { launchDice, playersScore } = useLaunchDice();
 
+  // Utilisation d'un useState pour stocker le nombre de dés à lancer (l'initailisation est à 1)
   const [numDice, setNumDice] = useState(1);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
 
-
+  // Si le nombre de dés à lancer change (action de l'utilisateur), on met à jour le numDice
   const handleDiceChange = (event) => {
     setNumDice(parseInt(event.target.value));
   };

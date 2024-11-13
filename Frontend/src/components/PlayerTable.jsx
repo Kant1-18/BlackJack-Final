@@ -1,4 +1,7 @@
-// PlayerTable.jsx
+// Les composants ne sont pas directement fonctionnels puisque nous avons gérés les lignes autrement
+// Même si nous étions passé par les composants, notre problème aurait été le même.
+
+
 import PropTypes from 'prop-types';
 import PlayerRow from './PlayerRow';
 
