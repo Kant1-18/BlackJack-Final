@@ -50,7 +50,11 @@ export default function GamePage() {
       <button onClick={handleLaunchDice}>Lancer les dés</button>
       <button>Finir le tour</button>
       <ul>
-        
+        {/* {gameInfo.players[0].map((player) => (
+          <li key={player[0]}>
+            {player[1]} - Score: {player[2]}
+          </li>
+        ))} */}
       </ul>
     </div>
   );
