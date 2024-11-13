@@ -16,9 +16,8 @@ export default function useGetPlayers(game_id) {
               }),
         })
             .then((response) => response.json())
-            .then((response) => {
-                const parsedResponse = JSON.parse(response);
-                setPlayersList(parsedResponse);
+            .then((data) => {
+                setPlayersList(data);
             })
             .catch((reason) => {
                 console.error(reason);

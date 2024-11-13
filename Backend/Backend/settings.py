@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-47*_2wjn0v54d2tb1_=)6+zo*2p+oogfhzi)k4$0fq$+)w#ye2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
 
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'BlackJack.apps.BlackjackConfig'
+    'BlackJack.apps.BlackjackConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost",
+    "http://127.0.0.1:5173",
+]

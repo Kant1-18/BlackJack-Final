@@ -4,9 +4,6 @@ import "./GamePage.css";
 import PlayerTable from "../components/PlayerTable";
 import useLaunchDice from "../hooks/useLaunchDice";
 import useGetPlayers from "../hooks/useGetPlayers";
-// import endTurn from "../hooks/useEndTurn";
-// import {gameName,gameId} from "../hooks/useCreateGame";
-//import { playersList } from "../hooks/useCreateGame";
 
 export default function GamePage() {
   let { gameId } = useParams();
@@ -15,7 +12,7 @@ export default function GamePage() {
   const { launchDice, playersScore } = useLaunchDice();
 
   const [numDice, setNumDice] = useState(1);
-  const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0); // Index du joueur actuel
+  const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
 
 
   const handleDiceChange = (event) => {
