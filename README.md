@@ -55,6 +55,8 @@ Toutes les fonctionnalités que nous n'avons pas réussi à "rendre visible" son
 - **Page d'accueil** (`Home.jsx`) : Affiche le formulaire pour créer une nouvelle partie
 - **Page de la partie** (`GamePage.jsx`) : Affiche la partie (tableau avec les scores et les joueurs, qui a la main, les actions possibles (lancer les dés, mettre fin au tour...)).
 
+Pour mieux comprendre le code, nous avons commenté certaines parties.
+
 
 ## Structure du Projet
 
