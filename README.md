@@ -1,4 +1,4 @@
-# Gestionnaire de Contact en PHP
+# Black Jack
 
 Notre projet est une petite application web permettant de jouer au BlackJack. Elle est conçue avec du React.js pour la partie front, du Python pour la partie back et une base de données.
 Le principe du BlackJack est d'obtenir un score le plus proche possible de 21 sans le dépasser : le joueur peut lancer 1, 2 ou 3 dés jusqu'à qu'il mette fin à son tour.
@@ -9,9 +9,8 @@ Une fois que tout le monde a joué, le joueur le plus proche de 21 remporte la p
 2. [Installation](#installation)
 3. [Utilisation](#utilisation)
 4. [Structure du Projet](#structure-du-projet)
-5. [Explication du Code](#explication-du-code)
-6. [Technologies](#technologies)
-7. [Auteurs](#auteurs)
+5. [Technologies](#technologies)
+6. [Auteurs](#auteurs)
 
 
 ## Fonctionnalités
