@@ -43,7 +43,11 @@ def add(request, add_game_schema: AddGameSchema):
 @api.post("/launch_dice/")
 def launch_dice(request, launch_dice_schema: LaunchDiceSchema):
     player = services.launchDice(launch_dice_schema.player_id, launch_dice_schema.number_of_dice)
-    return json.dumps((player.score))
+    if player.score > 21:
+        endTurn = True
+    else:
+        endTurn = False
+    return json.dumps(player.score, endTurn)
 
 @api.post("/end_turn/")
 def end_turn(request, end_turn_schema: EndTurnSchema):
