@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useParams } from 'react-router-dom';
 import "./GamePage.css";
-import PlayerTable from "../components/PlayerTable";
 import useLaunchDice from "../hooks/useLaunchDice";
-import useGetPlayers from "../hooks/useGetPlayers";
+import useGetGame from "../hooks/useGetGame";
 
 export default function GamePage() {
   let { gameId } = useParams();
-  const { getPlayers, playersList } = useGetPlayers(gameId);
-  console.log(playersList);
+
+  const { getGame, gameInfo } = useGetGame();
+  getGame(gameId);
+  console.log(gameInfo);
+
   const { launchDice, playersScore } = useLaunchDice();
 
   const [numDice, setNumDice] = useState(1);
@@ -20,15 +22,11 @@ export default function GamePage() {
   };
 
   const { handleLaunchDice } = useLaunchDice(currentPlayerIndex, numDice);
+  // const { handleEndTurn } = useEndTurn(gameId);
 
   //  if (endTurn) {
   //    endTurn(gameId);
   //  }
-
-  //  const handleEndTurn = () => {
-  //    endTurn(gameId);
-  //    setCurrentPlayerIndex((prevIndex) => (prevIndex + 1) % filteredPlayers.length);
-  //}
 
 
   return (
@@ -52,9 +50,7 @@ export default function GamePage() {
       <button onClick={handleLaunchDice}>Lancer les dés</button>
       <button>Finir le tour</button>
       <ul>
-        {playersList.map(player => (
-          <li key={player.id}>{player.name}</li>
-        ))}
+        
       </ul>
     </div>
   );

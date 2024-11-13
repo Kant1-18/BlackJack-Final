@@ -5,16 +5,17 @@ import json
 
 
 api = NinjaAPI()
-
-class GameSchema(ModelSchema):
-    class Meta:
-        model = Game
-        fields = ["id", "name", "turn", "ended"]
         
 class PlayerSchema(ModelSchema):
     class Meta:
         model = Player
         fields = ["id", "name", "score", "game"]
+
+class GameSchema(ModelSchema):
+    class Meta:
+        model = Game
+        fields = ["id", "name", "turn", "ended"]
+        players: list[PlayerSchema]
 
 class AddGameSchema(Schema):
     name: str
@@ -34,7 +35,6 @@ class getPlayersSchema(Schema):
 def add(request, add_game_schema: AddGameSchema):
     game = services.create_game(add_game_schema.name, add_game_schema.players)
     players = services.get_players(game.id)
-    
     listPlayers = []
     for player in players:
         listPlayers.append([player.id, player.name, player.score])
@@ -63,12 +63,24 @@ def end_turn(request, end_turn_schema: EndTurnSchema):
     else:
         gameEnded = game.ended
         return json.dumps(gameEnded)
-    
-@api.post("/api/get_players/")
-def get_players(request, get_players_schema: getPlayersSchema):
-    players = services.get_players(get_players_schema.game_id)
 
+
+@api.get("/get_game/{game_id}/")
+def get_game_info(request, game_id: int):
+    game = services.get_game(game_id)
+    players = services.get_players(game_id)
+    
     listPlayers = []
     for player in players:
         listPlayers.append([player.id, player.name, player.score])
-    return json.dumps(listPlayers)
+
+    game_info = {
+        "game": {
+            "id": game.id,
+            "name": game.name,
+            "turn": game.turn,
+            "ended": game.ended
+        },
+        "players": listPlayers
+    }
+    return json.dumps(game_info)

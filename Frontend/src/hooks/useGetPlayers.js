@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 export default function useGetPlayers(game_id) {
-    console.log(game_id);
     const [playersList, setPlayersList] = useState([]);
 
     const getPlayers = () => {
@@ -16,8 +15,8 @@ export default function useGetPlayers(game_id) {
               }),
         })
             .then((response) => response.json())
-            .then((data) => {
-                setPlayersList(data);
+            .then((response) => {
+                setPlayersList(response.players);
             })
             .catch((reason) => {
                 console.error(reason);
@@ -25,6 +24,5 @@ export default function useGetPlayers(game_id) {
 
             
     };
-    console.log(playersList);
     return { getPlayers, playersList };
 }

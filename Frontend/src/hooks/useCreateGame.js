@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 
 export default function useCreateGame() {
-  const navigate = useNavigate(); // Initialiser navigate dans le hook
+  const navigate = useNavigate();
 
-  const createGame = (name, filteredPlayers) => {
+  const createGame = (name, playerList) => {
     fetch("http://localhost:8000/api/start_game/", {
       method: "POST",
       headers: {
@@ -12,7 +12,7 @@ export default function useCreateGame() {
       },
       body: JSON.stringify({
         name: name,
-        players: filteredPlayers,
+        players: playerList,
       }),
     })
       .then((response) => response.json())
@@ -25,6 +25,5 @@ export default function useCreateGame() {
         console.error(reason);
       });
   };
-
-  return { createGame };
+  return { createGame }
 }
